@@ -10,7 +10,7 @@
 <body> 
 <h1> Form de Cadastro Cliente</h1>
 <form action="#" th:action="@{/add-cliente}" th:object="${cliente}" method="post">
- <input type="text" th:field="${nome}" placeholder="Seu nome aqui!">
+ <input type="text" th:field="*{nome}" placeholder="Seu nome aqui!">
  <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"> </span><br>
  
   

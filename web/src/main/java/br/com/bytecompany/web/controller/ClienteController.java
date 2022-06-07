@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.bytecompany.web.model.Cliente;
 import repository.ClienteRepository;
@@ -16,26 +17,26 @@ import repository.ClienteRepository;
 public class ClienteController {
 
 	@Autowired
-	ClienteRepository clienteRep;
+	ClienteRepository clienteRepository;
 	
 	
-	@GetMapping ("/cliente")
+	@RequestMapping ("/cliente")
 	public String listar(Model md) {
-		md.addAttribute("clientes", clienteRep.findAll());
+		md.addAttribute("clientes", clienteRepository.findAll());
 		return "list";
 	}
 	
 	@GetMapping("/add-cliente")
 	public String addCliente(Model md) {
 		md.addAttribute("Cliente", new Cliente());
-		return "addClienteForm";
+		return "cliente-form";
 	}
 	@PostMapping("/add-cliente")
 	public String cadastraClienteBanco(@Valid Cliente cliente, BindingResult result) {
 		if(result.hasErrors()) {
 			return "addClienteForm";
 		}
-		clienteRep.save(cliente);
+		clienteRepository.save(cliente);
 			return "redirect:/";
 	}
 	
