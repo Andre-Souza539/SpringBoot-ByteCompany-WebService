@@ -9,7 +9,6 @@ import javax.validation.constraints.Size;
 
 import lombok.Data;
 
-@Data
 @Entity
 public class Cliente {
 	
@@ -18,13 +17,36 @@ public class Cliente {
 	private long id;
 	
 	@NotNull
-	@Size(min = 3)
+	@Size(min = 3, max = 100)
 	private String nome;
 	@NotNull
-	@Size(min = 3)
+	@Size(min = 3, max = 50)
 	private String endereco;
 	@NotNull
-	@Size(min = 11)
+	@Size(min = 11,max = 11)
 	private String cpf;
 	
+	
+	public long getId() {
+		return id;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 }
