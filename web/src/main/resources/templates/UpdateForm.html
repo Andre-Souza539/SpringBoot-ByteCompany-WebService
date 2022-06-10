@@ -9,19 +9,19 @@
 </head>
 <body> 
 	<h1> Formulário de Clientes</h1>
-	<form action="#" th:action="@{/process}" th:object="${cliente}" method="post">
+	<form action="#" th:action="@{/process}" th:object="${cliente}" method="put">
 	 
 	 <label>Nome</label><br>
-	 <input type="text" th:field="*{nome}">
+	 <input type="text" th:field="*{nome}" th:value="${cliente.nome}">
 	  <span th:if="${#fields.hasErrors('nome')}"
 	  		th:errors="*{nome}"></span><br>
 	  <label>Endereco</label><br>
-	   <input type="text" th:field="*{endereco}">
+	   <input type="text" th:field="*{cliente.endereco}">
 	  <span th:if="${#fields.hasErrors('endereco')}"
 	  		th:errors="*{endereco}"></span><br>
 	  
 	  <label>Cpf</label><br>
-	  <input type="text" th:field="*{cpf}">
+	  <input type="text" th:field="*{cliente.cpf}">
 	  <span th:if="${#fields.hasErrors('cpf')}"
 	  		th:errors="*{cpf}"></span><br>
 	  		

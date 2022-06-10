@@ -6,19 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title> Listagem de Cliente </title>
-	<link rel="stylesheet" href="./css/table.css">
+
+    <link th:rel="stylesheet" th:href="@{/css/table.css} "/>
+    
 </head>
 <body>
 	<h1>Listagem de Clientes</h1>
-	<a href="/add">Add Cliente</a><br>
+	<a href="/add">Add Cliente</a>
+	<a href="/">Página Inicial</a><br>
 	
-	<table>
-	<tr> 
-		<th>ID</th>
-		<th>Nome</th>
-		<th>Endereço</th>
-		<th>Cpf</th>
-	</tr>
+	<table class="table">
+		<thead	class="thead-dark">
+			<tr> 
+				<th>ID</th>
+				<th>Nome</th>
+				<th>Endereço</th>
+				<th>Cpf</th>
+				<th> Opc </th>
+			</tr>
+		</thead>
 	
    	<th:block th:each="cliente : ${clientes}">
       <tr>
@@ -26,10 +32,17 @@
          <td th:text="${cliente.nome}">...</td>
          <td th:text="${cliente.endereco}">...</td>
          <td th:text="${cliente.cpf}">...</td>
+         <td><a th:href="@{/cliente/delete/} + ${cliente.id}">Delete</a> | <a th:href="@{/cliente/edit/} + ${cliente.id}">Update</a></td>
       </tr>
+      
    	</th:block>
 </table>
 	
 </body> 
+
+<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+
 
 </html>
