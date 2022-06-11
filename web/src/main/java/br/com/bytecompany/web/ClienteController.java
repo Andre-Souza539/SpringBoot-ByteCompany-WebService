@@ -1,5 +1,7 @@
 package br.com.bytecompany.web;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
@@ -11,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,9 +55,16 @@ public class ClienteController {
 	
 	@GetMapping("/cliente/edit/{id}")
 	public String editCliente(@PathVariable Long id, Model model) {
-			
-		
-		return "UpdateForm";
+
+		model.addAttribute("cliente", clienteRepository.findById(id));		
+		return "updateForm";
 	}
+	
+	@PostMapping("/save")
+	public String updateForm(@ModelAttribute("cliente") Cliente cliente ) {
+		clienteRepository.save(cliente);
+		return "redirect:/clientes";
+	}
+	
 	
 }
